@@ -1,14 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './sidebar.scss';
 
 const sidebarNavItems = [
-    {
-        display: 'Sohbet',
-        icon: <i className='bx bx-home'></i>,
-        to: '/',
-        section: ''
-    },
     {
         display: 'Profil',
         icon: <i className='bx bx-user'></i>,
@@ -23,6 +17,7 @@ const Sidebar = () => {
     const sidebarRef = useRef();
     const indicatorRef = useRef();
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         setTimeout(() => {
@@ -39,8 +34,23 @@ const Sidebar = () => {
     }, [location]);
 
     return <div className='sidebar'>
-        <div className="sidebar__logo">
+        <div className="sidebar__logo" onClick={() => { navigate("/") }}>
             Code Wiz Chat
+        </div>
+        <div className='sidebar__lastRecent scroll'>
+            Geçmiş Sohbetler
+            
+            <div className='container mb-2' style={{"cursor":"pointer"}}>
+                <div className='card border-2'>
+                    <div className='card-title d-flex justify-content-between align-items-center'>
+                        <i className='bx bxs-message'></i>
+                        <div className="text-center">
+                            <span className="d-inline-block">asdasd</span>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div ref={sidebarRef} className="sidebar__menu">
             <div
@@ -62,7 +72,7 @@ const Sidebar = () => {
                             </div>
                         </div>
                     </Link>
-                    
+
                 ))
             }
         </div>
