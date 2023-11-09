@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './sidebar.scss';
-
+import { useSelector } from 'react-redux';
 const sidebarNavItems = [
     {
         display: 'Profil',
@@ -18,7 +18,7 @@ const Sidebar = () => {
     const indicatorRef = useRef();
     const location = useLocation();
     const navigate = useNavigate();
-
+    const user = useSelector(state => state.user)
     useEffect(() => {
         setTimeout(() => {
             const sidebarItem = sidebarRef.current.querySelector('.sidebar__menu__item');
@@ -39,18 +39,19 @@ const Sidebar = () => {
         </div>
         <div className='sidebar__lastRecent scroll'>
             Geçmiş Sohbetler
-            
-            <div className='container mb-2' style={{"cursor":"pointer"}}>
-                <div className='card border-2'>
-                    <div className='card-title d-flex justify-content-between align-items-center'>
-                        <i className='bx bxs-message'></i>
-                        <div className="text-center">
-                            <span className="d-inline-block">asdasd</span>
+            {Object.values(user.chats).map((key) => (
+                <div key={key.chatName} className='container mb-2' style={{ cursor: 'pointer' }}>
+                    <div className='card border-2'>
+                        <div className='card-body d-flex justify-content-between align-items-center'>
+                            <i className='bx bxs-message'></i>
+                            <div className="text-center">
+                                <h5 className="card-title">{key.chatName}</h5>
+                            </div>
+                            <div></div>
                         </div>
-                        <div></div>
                     </div>
                 </div>
-            </div>
+            ))}
         </div>
         <div ref={sidebarRef} className="sidebar__menu">
             <div
@@ -68,11 +69,10 @@ const Sidebar = () => {
                                 {item.icon}
                             </div>
                             <div className="sidebar__menu__item__text">
-                                {item.display}
+                                {`${user.userName}`}
                             </div>
                         </div>
                     </Link>
-
                 ))
             }
         </div>

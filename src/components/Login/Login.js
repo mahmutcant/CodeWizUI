@@ -2,11 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import { useForm } from 'react-hook-form';
 import { loginService } from '../../services/chat-service';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../store/actions';
 function Login() {
     const { register: login, handleSubmit: handleSubmitLogin } = useForm();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    
     const loginSubmit = (data) => {
-        loginService(data)
+            loginService(data)
             .then(data => {
                 localStorage.setItem("token", data.token); navigate('/layout');
             }

@@ -15,3 +15,13 @@ export async function loginService(user) {
         throw err
     }
 }
+export async function getUserInfo(){
+    const response = await axios({
+        method : "GET",
+        url : `${baseUrl}/User/user/details`,
+        headers : {
+            Authorization : `Bearer ${localStorage.getItem('token')}`
+        }
+    })
+    return response.data
+}
