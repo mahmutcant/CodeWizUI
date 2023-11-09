@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import MessageList from '../MessageList/MessageList';
 import MessageInput from '../MessageInput/MessageInput';
-
 function Chat() {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');

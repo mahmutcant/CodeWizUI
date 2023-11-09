@@ -6,7 +6,7 @@ const sidebarNavItems = [
     {
         display: 'Profil',
         icon: <i className='bx bx-user'></i>,
-        to: '/user',
+        to: '/layout/user',
         section: 'user'
     }
 ]
@@ -28,13 +28,13 @@ const Sidebar = () => {
     }, []);
 
     useEffect(() => {
-        const curPath = window.location.pathname.split('/')[1];
+        const curPath = window.location.pathname.split('/')[0];
         const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
         setActiveIndex(curPath.length === 0 ? 0 : activeItem);
     }, [location]);
 
     return <div className='sidebar'>
-        <div className="sidebar__logo" onClick={() => { navigate("/") }}>
+        <div className="sidebar__logo" onClick={() => { navigate("/layout") }}>
             Code Wiz Chat
         </div>
         <div className='sidebar__lastRecent scroll'>

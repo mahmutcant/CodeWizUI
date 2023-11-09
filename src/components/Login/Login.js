@@ -1,16 +1,26 @@
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useForm } from 'react-hook-form';
+import { loginService } from '../../services/chat-service';
+function Login() {
+    const { register: login, handleSubmit: handleSubmitLogin } = useForm();
+    const navigate = useNavigate()
+    const loginSubmit = (data) => {
+        loginService(data)
+            .then(data => {
+                localStorage.setItem("token", data.token); navigate('/layout');
+            }
+            ).catch()
+    };
 
-function Login(){
-    return(
-        <div class="login-container">
-            <div class="form-container">
-                <h2><FontAwesomeIcon icon="fa-solid fa-coffee" size="lg" />
-                    Giriş Yap</h2>
+    return (
+        <div className="login-container">
+            <div className="form-container">
+                <h2>Giriş Yap</h2>
                 <form method="post">
-                    <input type="text" name="kullanici_adi" placeholder="Kullanıcı Adı" required/>
-                    <input type="password" name="sifre" placeholder="Şifre" required/>
-                    <button type="submit">Giriş Yap</button>
+                    <input type="text" name="kullanici_adi" {...login('username', { required: true })} placeholder="Kullanıcı Adı" required />
+                    <input type="password" name="sifre" {...login('password', { required: true })} placeholder="Şifre" required />
+                    <button type="submit" onClick={handleSubmitLogin(loginSubmit)}>Giriş Yap</button>
                 </form>
             </div>
         </div>
