@@ -17,7 +17,7 @@ const Sidebar = () => {
     const sidebarRef = useRef();
     const indicatorRef = useRef();
     const location = useLocation();
-    const navigate = useNavigate();
+    const navigate = useNavigate();    
     const user = useSelector(state => state.user)
     useEffect(() => {
         setTimeout(() => {
@@ -26,12 +26,14 @@ const Sidebar = () => {
             setStepHeight(sidebarItem.clientHeight);
         }, 50);
     }, []);
-
     useEffect(() => {
         const curPath = window.location.pathname.split('/')[0];
         const activeItem = sidebarNavItems.findIndex(item => item.section === curPath);
         setActiveIndex(curPath.length === 0 ? 0 : activeItem);
     }, [location]);
+    const goSelectedChat = (id) => {
+        navigate(`/layout/${id}`)
+    }
 
     return <div className='sidebar'>
         <div className="sidebar__logo" onClick={() => { navigate("/layout") }}>
@@ -40,7 +42,8 @@ const Sidebar = () => {
         <div className='sidebar__lastRecent scroll'>
             Geçmiş Sohbetler
             {Object.values(user.chats).map((key) => (
-                <div key={key.chatName} className='container mb-2' style={{ cursor: 'pointer' }}>
+                <div key={key.chatName} className="container mb-2"
+                style={{ cursor: 'pointer'}} onClick={() => goSelectedChat(key.chatId)}>
                     <div className='card border-2'>
                         <div className='card-body d-flex justify-content-between align-items-center'>
                             <i className='bx bxs-message'></i>

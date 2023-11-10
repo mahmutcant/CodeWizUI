@@ -2,13 +2,10 @@ import './MessageInput.css';
 function MessageInput({ text, handleTextChange, handleSubmit }) {
     return (
       <div className="chat-input">
-        <input
-        id="messageInput"
+        <textarea id="messageInput"
           type="text"
           placeholder=" Kodunuzu buraya girin"
-          value={text}
-          onChange={handleTextChange}
-        />
+          value={text} onChange={handleTextChange}></textarea>
         <button id='sendMessage' 
         style={{"backgroundColor" : text.length === 0 ? "#6B6C7B" : "#308efe"}}
         disabled={text.length === 0} 

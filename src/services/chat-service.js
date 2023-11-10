@@ -25,3 +25,13 @@ export async function getUserInfo(){
     })
     return response.data
 }
+export async function getMessage(id) {
+    const response = await axios({
+        method : "GET",
+        url : `${baseUrl}/api/getmessages?chatId=${id}`,
+        headers : {
+            Authorization : `Bearer ${localStorage.getItem('token')}`
+        }
+     })
+    return response.data
+}

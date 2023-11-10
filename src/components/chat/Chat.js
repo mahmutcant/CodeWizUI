@@ -25,8 +25,8 @@ function Chat() {
 
   return (
     <div className='App'>
-      <div className='content'>
-        <MessageList messages={messages} />
+      <div className='content' style={{"marginBottom": "100px"}}>
+        <MessageList/>
         <MessageInput
           text={text}
           handleTextChange={handleTextChange}
