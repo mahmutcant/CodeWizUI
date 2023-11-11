@@ -35,3 +35,22 @@
   font-size: 20px;
   margin-right: 5px;
 }
+textarea {
+  height: 10em;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #ddd;
+  resize: none;
+}
+textarea::-webkit-scrollbar {
+  width: 12px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: #ddd;
+}
