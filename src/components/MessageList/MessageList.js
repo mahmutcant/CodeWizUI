@@ -17,7 +17,9 @@ function MessageList() {
   }
   const textSplitter = (text) => {
     const beginIndex = text.split("```")
-    return beginIndex[1]
+    const languageWithDot = text.split("written in ")[1]
+    const language = languageWithDot.split(".")[0]
+    return  {code : beginIndex[1],language : language}
   }
   return (
     messageList.length === 0 ? <div className="message-container">
@@ -27,8 +29,8 @@ function MessageList() {
     {messageList && messageList.map((message, index) => (
       <li key={index}>
         <strong>{user.userName}:</strong> {message.userMessage}
-        <SyntaxHighlighter language="javascript" style={solarizedDark}>
-          {textSplitter(formatNewLines(message.messageContent))}
+        <SyntaxHighlighter language={textSplitter(formatNewLines(message.messageContent)).language.toLowerCase()} style={solarizedDark}>
+          {textSplitter(formatNewLines(message.messageContent)).code}
         </SyntaxHighlighter>
       </li>
     ))}
