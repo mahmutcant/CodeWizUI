@@ -15,6 +15,8 @@ const initialState = {
             ...state.user,
             userName: action.payload.username,
             userEmail: action.payload.email,
+            userFirstName : action.payload.firstName,
+            userLastName : action.payload.lastName,
             chats: action.payload.chats
           }
         };

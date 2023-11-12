@@ -30,6 +30,7 @@ const Sidebar = () => {
             indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
             setStepHeight(sidebarItem.clientHeight);
         }, 50);
+        console.log(user)
     }, []);
     useEffect(() => {
         const curPath = window.location.pathname.split('/')[0];
@@ -78,7 +79,7 @@ const Sidebar = () => {
                                 {item.icon}
                             </div>
                             <div className="sidebar__menu__item__text">
-                                {`${item.display ?? user.userName }`}
+                                {`${item.display ?? user.userFirstName }`}
                             </div>
                         </div>
                     </Link>
