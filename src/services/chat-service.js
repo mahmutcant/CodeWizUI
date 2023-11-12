@@ -20,7 +20,8 @@ export async function getUserInfo(){
         method : "GET",
         url : `${baseUrl}/User/user/details`,
         headers : {
-            Authorization : `Bearer ${localStorage.getItem('token')}`
+            Authorization : `Bearer ${localStorage.getItem('token')}`,
+            'ngrok-skip-browser-warning': 'true' 
         }
     })
     return response.data
@@ -30,7 +31,8 @@ export async function getMessage(id) {
         method : "GET",
         url : `${baseUrl}/api/getmessages?chatId=${id}`,
         headers : {
-            Authorization : `Bearer ${localStorage.getItem('token')}`
+            Authorization : `Bearer ${localStorage.getItem('token')}`,
+            'ngrok-skip-browser-warning': 'true' 
         }
      })
     return response.data

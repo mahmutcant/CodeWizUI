@@ -4,9 +4,14 @@ import './sidebar.scss';
 import { useSelector } from 'react-redux';
 const sidebarNavItems = [
     {
-        display: 'Profil',
         icon: <i className='bx bx-user'></i>,
         to: '/layout/user',
+        section: 'user'
+    },
+    {
+        display: 'Çıkış Yap',
+        icon: <i className='bx bx-exit'></i>,
+        to: '/',
         section: 'user'
     }
 ]
@@ -56,6 +61,7 @@ const Sidebar = () => {
                 </div>
             ))}
         </div>
+        
         <div ref={sidebarRef} className="sidebar__menu">
             <div
                 ref={indicatorRef}
@@ -72,7 +78,7 @@ const Sidebar = () => {
                                 {item.icon}
                             </div>
                             <div className="sidebar__menu__item__text">
-                                {`${user.userName}`}
+                                {`${item.display ?? user.userName }`}
                             </div>
                         </div>
                     </Link>
