@@ -30,7 +30,6 @@ const Sidebar = () => {
             indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
             setStepHeight(sidebarItem.clientHeight);
         }, 50);
-        console.log(user)
     }, []);
     useEffect(() => {
         const curPath = window.location.pathname.split('/')[0];
