@@ -7,6 +7,7 @@ export const setUser = (payload) => (
         email: payload.userEmail,
         username: payload.userName,
         firstName : payload.firstName,
+        lastName : payload.lastName,
         chats : payload.chats
     },
 } );

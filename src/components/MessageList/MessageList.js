@@ -12,10 +12,12 @@ function MessageList({messages}) {
     activeChat ? getMessage(activeChat).then(data => {setMessageList(data)} ) : setMessageList([])
   }, [activeChat])
   useEffect(() => {
-    const inMessage = messages.filter(item => item.activeChat === activeChat)
-    const textList = messageList.map(item => item.messageContent);
-    const lastMessage = inMessage[inMessage.length - 1].text
-    sendMessage(lastMessage,textList,activeChat)
+    if(messages.length > 0) {
+      const inMessage = messages.filter(item => item.activeChat === activeChat)
+      const textList = messageList.map(item => item.messageContent);
+      const lastMessage = inMessage[inMessage.length - 1].text
+      sendMessage(lastMessage,textList,activeChat)
+    }
   }, [messages])
   function formatNewLines(text) {
     return text.replace(/\\n/g, '\n');

@@ -78,7 +78,7 @@ const Sidebar = () => {
                                 {item.icon}
                             </div>
                             <div className="sidebar__menu__item__text">
-                                {`${item.display ?? user.userFirstName }`}
+                                {`${item.display ?? user.userFirstName + " " + user.userLastName }`}
                             </div>
                         </div>
                     </Link>

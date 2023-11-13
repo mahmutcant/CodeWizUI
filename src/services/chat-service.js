@@ -1,6 +1,7 @@
 import axios from "axios";
-const baseUrl = process.env.REACT_APP_USER_SERVICE_API_URL;
-const baseUrlBot = process.env.REACT_APP_BOT_SERVICE_API_URL;
+const baseUrl = "https://c1f4-176-33-117-60.ngrok-free.app";
+const baseUrlBot = "https://c308-34-132-132-248.ngrok-free.app";
+
 export async function loginService(user) {
     try{
         const response = await axios({
@@ -64,7 +65,8 @@ export async function sendMessage(message,history,activeChat){
         method : "POST",
         url : `${baseUrlBot}/root`,
         data : {
-            "message" : message
+            "message" : message,
+            "history" : ["",""]
         }
     }).then(data => {createChat(data.data)})
 }
