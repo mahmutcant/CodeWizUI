@@ -44,7 +44,7 @@ const Sidebar = () => {
         <div className="sidebar__logo" onClick={() => { navigate("/layout") }}>
             Code Wiz Chat
         </div>
-        <div className='sidebar__lastRecent scroll'>
+        <div className='sidebar__lastRecent scroll' style={{"visibility":"hidden"}}>
             Geçmiş Sohbetler
             {Object.values(user.chats).map((key) => (
                 <div key={key.chatName} className="container mb-2"

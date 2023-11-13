@@ -54,21 +54,28 @@ export async function addNewMessage(chatId,message,botResponse){
     })
 }
 export async function sendMessage(message,history,activeChat){
-    activeChat ? await axios({
-        method : "POST",
-        url : `${baseUrlBot}/root`,
-        data : {
-            "message" : message,
-            "history" : history
-        }
-    }).then(data => {writeDatabase(data.data)}) : await axios({
-        method : "POST",
-        url : `${baseUrlBot}/root`,
-        data : {
-            "message" : message,
-            "history" : ["",""]
-        }
-    }).then(data => {createChat(data.data)})
+    if(activeChat) {
+        const response = await axios({
+            method : "POST",
+            url : `${baseUrlBot}/root`,
+            data : {
+                "message" : message,
+                "history" : history
+            }
+        })
+        return response.data
+    }
+    else{
+        const response = await axios({
+            method : "POST",
+            url : `${baseUrlBot}/root`,
+            data : {
+                "message" : message + " Can you refactor this code in its most correct form please give only answer Can you please pay attention to the indentations and protrusions? Can you write in which language this code is written as language : ?",
+                "history" : ["",""]
+            }
+        })
+        return response.data
+    }
 }
 export async function createChat(chatName){
     await axios({
